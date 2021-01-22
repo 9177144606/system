@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="atm.css">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <body>
+            <script>
+             "use strict"
+             let amount=prompt('Enter a amount');
+             let totalNotes=prompt('enter a notes');
+             let totalAmount=0;
+             let notes=[1,2,5,10,20,50,100,200,500,2000];
+             let notesCount=[];
+             let calculateAmount=0;
+             let finalNotes=[];
+             let notesNo=[];
+             for(let num of notes){
+                 totalAmount +=num * 20;
+             }          
+             if(amount > totalAmount || amount==0 || isNaN(amount)){
+                 alert('insuffient found or Invalid Amount');
+             }
+             else{
+                 for(let note of notes){
+                     calculateAmount +=note * totalNotes;
+                     finalNotes.unshift(note);
+                     if(amount <= calculateAmount){
+                         alert(calculateAmount);
+                         break;
+                     }
+                 }
+                 for(let note of finalNotes){
+                     let temp=0;
+                     for(let i=1;i<=totalNotes;i++){
+                         if(amount >=note){
+                             amount -=note;
+                             ++temp;
+                         }
+                         if(amount==0){
+                             break;
+                         }
+                     }
+                     notesCount.push(temp);
+                     notesNo.push(note);
+                     if(amount==0){
+                         break;
+                     }
+                 }
+
+             }
+             for(let i=0;i<=notesCount.length-1;i++){
+                 if(notesCount[i]==0 || notesNo[i]==0){
+                     continue;
+                 }
+                 document.write(notesCount[i]+" "+notesNo[i]+"<br>");
+             }
+
+           
+            </script>
+        </body>
+    </head>
+</html>
